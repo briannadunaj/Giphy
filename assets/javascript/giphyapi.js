@@ -1,7 +1,9 @@
 $(document).ready(function(){
 
-var animate = 0;
+var animate = "0";
+
 var topics = ["Arrested Development", "Portlandia", "The Office", "Key & Peele", "Comedy Bang! Bang!", "Parks and Recreation", "Summer Heights High", "It's Always Sunny in Philadelphia", "Bob's Burgers", "Broad City", "Rick and Morty", "Tim and Eric Awesome Show, Great Job!"];
+
 
 // --------------- creating buttons --------------- //
 // function to create the buttons
@@ -18,6 +20,7 @@ function renderButtons() {
 	} // end of for loop to create buttons for each topic
 
 } // end of renderButtons function
+
 
 $("#add-show").on("click", function(event) {
 	event.preventDefault();
@@ -74,39 +77,39 @@ function displayShows() {
 	    		// creating an image tag
 	    		var showGif = $("<img class = showGif>");
 
-	    		// giving the image tag a src attribute of the still gif url
-	    		showGif.attr("src", results[i].images.fixed_height_still.url).val(i);
+	    		// giving the image tag an src attribute of a property
+	    		//pulled off the result item
+	    		showGif.attr("src", results[i].images.fixed_height.url).val(i);
 
-	    		// appending the paragraph and showGif to the 
+
+	    		showGif.attr("src", $(this).attr("data-state"));
+
+
+	    		// appending the paragraph and personImage to the 
 	    		// "gifDiv" div
 	    		gifDiv.append(p);
 	    		gifDiv.append(showGif);
 
 	    		$("#shows-view").prepend(gifDiv);
 
-	    	} // end of loop for results
 
+	    	} // end of loop for results
 	    
-	    	// image will animate when clicked
+	    	// image will load as still and will animate when clicked
 	    	$(".showGif").on("click", function() {
 	    		console.log("click")
 
-	    		if (animate == 0) {
+	    		var state = $(this).attr("data-state");
 
-	    			// variable to hold value of gif being clicked 
-	    			var imageVal = this.value
-
-	    			// give gif that is being clicked a source attribute of the animated gif url
-	    			$(this).attr("src", results[imageVal].images.fixed_height.url)
-	    			
-	    			// increase integer to change gif image url
-	    			animate ++;
+	    		if (state === "still") {
+	    			$(this).attr("src", $(this).attr("data-animate"));
+	    			$(this).attr("data-state", "animate");
 	    		} else {
-	    			var imageVal = this.value
-	    			$(this).attr("src", results[imageVal].images.fixed_height_still.url)
-	    			animate --;
+	    			$(this).attr("src", $(this).attr("data-still"));
+	    			$(this).attr("data-state", "still");
 
-	    		} // end of else statement 
+	    		} // end of else statement
+
 
 	    	}); // end of still/animate function
 
@@ -114,6 +117,6 @@ function displayShows() {
 
 }; // end of displayShowInfo function
 
-$(document).on("click", ".topic", displayShows);
 
+	$(document).on("click", ".topic", displayShows);
 }); // end of document ready function
