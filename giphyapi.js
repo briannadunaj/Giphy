@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 var animate = 0;
-var topics = ["Arrested Development", "Portlandia", "The Office", "Key & Peele", "Comedy Bang! Bang!", "Parks and Recreation", "Summer Heights High", "It's Always Sunny in Philadelphia", "Bob's Burgers", "Broad City", "Rick and Morty", "Tim and Eric Awesome Show, Great Job!"];
+var topics = ["Arrested Development", "Portlandia", "The Office", "Key and Peele", "Comedy Bang! Bang!", "Parks and Recreation", "Summer Heights High", "It's Always Sunny in Philadelphia", "Bob's Burgers", "Broad City", "Rick and Morty", "Tim and Eric Awesome Show, Great Job!"];
 
 // --------------- creating buttons --------------- //
 // function to create the buttons
